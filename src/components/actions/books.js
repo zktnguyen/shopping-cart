@@ -23,7 +23,7 @@ export const updateBook = book => ({
   payload: book
 });
 
-export const actionsType = {
+export const actionTypes = {
   GET_BOOKS,
   POST_BOOK,
   DELETE_BOOK,

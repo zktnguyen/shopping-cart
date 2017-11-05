@@ -27,23 +27,31 @@ export default function(
     case actionTypes.GET_BOOKS:
       return state;
     case actionTypes.POST_BOOK:
+      return { books: [...state.books, action.payload] };
+    case actionTypes.DELETE_BOOK:
       currentBooks = [...state.books];
       index = currentBooks.findIndex(book => book._id === action.payload._id);
 
-      return [
-        ...currentBooks.slice(0, index),
-        ...currentBooks.slice(index + 1)
-      ];
+      return {
+        books: [
+          ...currentBooks.slice(0, index),
+          ...currentBooks.slice(index + 1)
+        ]
+      };
     case actionTypes.UPDATE_BOOK:
       currentBooks = [...state.books];
       index = currentBooks.findIndex(book => book._id === action.payload._id);
-
-      newBook = { ...currentBooks[index], title: action.payload.title };
-      return [
-        ...currentBooks.slice(0, index),
-        newBook,
-        ...currentBooks.slice(index + 1)
-      ];
+      if (index > 0) {
+        newBook = { ...currentBooks[index], title: action.payload.title };
+        return {
+          books: [
+            ...currentBooks.slice(0, index),
+            newBook,
+            ...currentBooks.slice(index + 1)
+          ]
+        };
+      }
+      return { books: currentBooks };
     default:
       return state;
   }
