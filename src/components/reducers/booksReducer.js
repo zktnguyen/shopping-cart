@@ -41,7 +41,7 @@ export default function(
     case actionTypes.UPDATE_BOOK:
       currentBooks = [...state.books];
       index = currentBooks.findIndex(book => book._id === action.payload._id);
-      if (index > 0) {
+      if (index >= 0) {
         newBook = { ...currentBooks[index], title: action.payload.title };
         return {
           books: [

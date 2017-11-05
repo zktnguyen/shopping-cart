@@ -31,8 +31,19 @@ class App extends Component {
       _id: 4,
       title: 'Trust me',
       description: 'underscores',
-      price: 32
+      price: 32,
+      quantity: 1
     });
+    this.props.addToCart({
+      _id: 1,
+      title: 'this is the book title',
+      description: 'this is the book description',
+      price: 33.33,
+      quantity: 1
+    });
+    this.props.deleteCartItem({ _id: 4 });
+    this.props.updateCartItem(4, 1);
+    this.props.updateCartItem(1, -1);
   }
 
   render() {
