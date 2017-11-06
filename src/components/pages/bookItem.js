@@ -37,7 +37,9 @@ class BookItem extends Component {
             <h6>{this.props.title}</h6>
             <p>{this.props.description}</p>
             <h6>usd. {this.props.price}</h6>
-            <Button bsStyle="primary">Buy Now</Button>
+            <Button onClick={this.handleCart} bsStyle="primary">
+              Buy Now
+            </Button>
           </Col>
         </Row>
       </Well>

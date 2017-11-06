@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 
 import './index.css';
 import App from './App';
-import Reducers from './components/reducers';
+import Reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
 const middleware = applyMiddleware(logger);
