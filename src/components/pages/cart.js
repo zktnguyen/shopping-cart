@@ -34,7 +34,7 @@ class Cart extends Component {
         {cartItemsList}
         <Row>
           <Col xs={12}>
-            <h6>Total Amount: {this.props.total} </h6>
+            <h6>Total Amount: ${this.props.total} </h6>
             <Button bsStyle="success" onClick={this.open}>
               Proceed to Checkout
             </Button>
