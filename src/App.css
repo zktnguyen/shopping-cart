@@ -1,0 +1,11 @@
+.badge {
+  color: white;
+  background-color: rgb(14, 165, 202);
+}
+
+.pullDown {
+  bottom: 0;
+  position: relative;
+  height: 60px;
+  margin-top: 25px;
+}

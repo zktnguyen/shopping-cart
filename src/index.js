@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 import logger from 'redux-logger';
 
 import './index.css';
@@ -13,11 +14,11 @@ const middleware = applyMiddleware(logger);
 const store = createStore(Reducers, middleware);
 
 render(
-  <Provider store={store}>
-    <div>
-      <App />
-    </div>
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <Route component={App} />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 registerServiceWorker();
