@@ -1,7 +1,7 @@
 import { actionTypes } from '../actions/cart';
 
 const updateState = (currentTotal, currentQuantity, price, quantity) => ({
-  total: currentTotal + price,
+  total: currentTotal + price * Math.abs(quantity),
   quantity: currentQuantity + quantity
 });
 
