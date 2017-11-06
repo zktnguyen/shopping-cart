@@ -12,9 +12,24 @@ const App = ({ location }) => (
   <div>
     <Menu />
     <div className="container">
-      <Route location={location} exact path="/" component={ItemsList} />
-      <Route location={location} exact path="/admin" component={BookForm} />
-      <Route location={location} exact path="/cart" component={Cart} />
+      <Route
+        location={location}
+        exact
+        path="/shopping-cart"
+        component={ItemsList}
+      />
+      <Route
+        location={location}
+        exact
+        path="/shopping-cart/admin"
+        component={BookForm}
+      />
+      <Route
+        location={location}
+        exact
+        path="/shopping-cart/cart"
+        component={Cart}
+      />
     </div>
     <Footer />
   </div>

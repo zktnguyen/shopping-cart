@@ -8,22 +8,22 @@ const Menu = ({ cartCapacity }) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="/">Shopping Cart</a>
+        <a href="/shopping-cart">Shopping Cart</a>
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <NavItem eventKey={1} href="/">
+      <NavItem eventKey={1} href="/shopping-cart">
         About
       </NavItem>
-      <NavItem eventKey={2} href="/">
+      <NavItem eventKey={2} href="/shopping-cart">
         Contact
       </NavItem>
     </Nav>
     <Nav pullRight>
-      <LinkContainer to="/admin">
+      <LinkContainer to="/shopping-cart/admin">
         <NavItem eventKey={1}>Admin</NavItem>
       </LinkContainer>
-      <LinkContainer to="/cart">
+      <LinkContainer to="/shopping-cart/cart">
         <NavItem eventKey={2}>
           Cart{' '}
           {cartCapacity > 0 ? (
