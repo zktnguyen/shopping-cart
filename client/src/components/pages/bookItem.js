@@ -25,7 +25,7 @@ class BookItem extends Component {
     if (cartIndex === -1) {
       this.props.addToCart(book);
     } else {
-      this.props.updateCartItem(book._id, 1);
+      this.props.updateCartItem(book._id, 1, this.props.cart);
     }
   };
 
@@ -54,7 +54,7 @@ BookItem.propTypes = {
   price: PropTypes.number.isRequired,
   cart: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,

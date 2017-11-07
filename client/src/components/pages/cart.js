@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Panel, Row, Col, Modal, Button } from 'react-bootstrap';
+import { getCart } from '../../actions/cart';
+
 import CartItem from './cartItem';
 
 class Cart extends Component {
@@ -12,6 +15,10 @@ class Cart extends Component {
     };
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCart();
   }
 
   close = () => this.setState({ showModal: false });
@@ -34,7 +41,7 @@ class Cart extends Component {
         {cartItemsList}
         <Row>
           <Col xs={12}>
-            <h6>Total Amount: ${this.props.total} </h6>
+            <h6>Total Amount: ${this.props.total.toFixed(2)} </h6>
             <Button bsStyle="success" onClick={this.open}>
               Proceed to Checkout
             </Button>
@@ -74,7 +81,8 @@ Cart.propTypes = {
       quantity: PropTypes.number.isRequired
     }).isRequired
   ).isRequired,
-  total: PropTypes.number.isRequired
+  total: PropTypes.number.isRequired,
+  getCart: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -84,4 +92,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Cart);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getCart }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

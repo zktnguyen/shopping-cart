@@ -19,8 +19,10 @@ class CartItem extends Component {
     this.props.deleteCartItem({ _id });
   };
 
-  onIncrement = () => this.props.updateCartItem(this.props._id, 1);
-  onDecrement = () => this.props.updateCartItem(this.props._id, -1);
+  onIncrement = () =>
+    this.props.updateCartItem(this.props._id, 1, this.props.cart);
+  onDecrement = () =>
+    this.props.updateCartItem(this.props._id, -1, this.props.cart);
 
   render() {
     const { _id, title, price, quantity } = this.props;
@@ -71,11 +73,25 @@ CartItem.propTypes = {
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   deleteCartItem: PropTypes.func.isRequired,
-  updateCartItem: PropTypes.func.isRequired
+  updateCartItem: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired
+    }).isRequired
+  ).isRequired
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ deleteCartItem, updateCartItem }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(CartItem);
+function mapStateToProps(state) {
+  return {
+    cart: state.cart.cart
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
