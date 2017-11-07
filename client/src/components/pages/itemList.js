@@ -6,6 +6,7 @@ import { Col, Row, Grid } from 'react-bootstrap';
 
 import { getBooks } from '../../actions/books';
 import BookItem from './bookItem';
+import BookForm from './bookForm';
 
 class itemList extends Component {
   componentDidMount() {
@@ -26,7 +27,12 @@ class itemList extends Component {
     return (
       <Grid>
         <h1> List of Items </h1>
-        <Row style={{ marginTop: '15px' }}>{itemsList}</Row>
+        <Row style={{ marginTop: '15px' }}>
+          <Col xs={12} sm={6}>
+            <BookForm />
+          </Col>
+          {itemsList}
+        </Row>
       </Grid>
     );
   }
@@ -36,7 +42,7 @@ itemList.propTypes = {
   getBooks: PropTypes.func.isRequired,
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired

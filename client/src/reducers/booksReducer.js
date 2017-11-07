@@ -3,20 +3,7 @@ import { actionTypes } from '../actions/books';
 
 export default function(
   state = {
-    books: [
-      {
-        _id: 1,
-        title: 'this is the book title',
-        description: 'this is the book description',
-        price: 33.33
-      },
-      {
-        _id: 2,
-        title: 'this is the second book title',
-        description: 'this is the second book description',
-        price: 55
-      }
-    ]
+    books: []
   },
   action
 ) {
@@ -25,7 +12,7 @@ export default function(
   let newBook = {};
   switch (action.type) {
     case actionTypes.GET_BOOKS:
-      return state;
+      return { ...state, books: [...action.payload] };
     case actionTypes.POST_BOOK:
       return { books: [...state.books, action.payload] };
     case actionTypes.DELETE_BOOK:

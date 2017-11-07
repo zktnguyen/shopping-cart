@@ -66,7 +66,7 @@ class CartItem extends Component {
 }
 
 CartItem.propTypes = {
-  _id: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,

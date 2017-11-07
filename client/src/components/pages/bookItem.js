@@ -48,7 +48,7 @@ class BookItem extends Component {
 }
 
 BookItem.propTypes = {
-  _id: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

@@ -18,12 +18,10 @@ class BookForm extends Component {
     super(props);
     this.state = {
       data: {
-        _id: -1,
         title: '',
         description: '',
         price: 0
       },
-      currentId: this.props.books[this.props.books.length - 1]._id + 1,
       toDelete: -23
     };
   }
@@ -39,17 +37,15 @@ class BookForm extends Component {
   };
 
   onSelect = e => {
-    this.setState({ toDelete: parseInt(e.target.value, 10) });
+    this.setState({ toDelete: e.target.value });
   };
 
   onSubmit = () => {
     this.props.postBook({
-      _id: this.state.currentId,
       title: this.state.data.title,
       description: this.state.data.description,
       price: this.state.data.price
     });
-    this.setState({ currentId: this.state.currentId + 1 });
   };
 
   deleteBook = () => {
@@ -125,7 +121,7 @@ class BookForm extends Component {
 BookForm.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired
