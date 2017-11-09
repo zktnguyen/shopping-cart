@@ -5,7 +5,7 @@ const fs = require('fs');
 const imageController = {};
 
 imageController.get = (req, res) => {
-  const imgFolder = path.join(__dirname, '../public/img/');
+  const imgFolder = path.join(__dirname, '../../client/public/images/');
   const filesArr = [];
   fs.readdir(imgFolder, (err, files) => {
     if (err) {

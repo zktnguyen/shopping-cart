@@ -9,5 +9,8 @@ export default {
   cart: {
     post: item => axios.post('/api/cart', item).then(res => res.data.data),
     get: () => axios.get('/api/cart').then(res => res.data.data)
+  },
+  images: {
+    get: () => axios.get('/api/images').then(res => res.data.data)
   }
 };

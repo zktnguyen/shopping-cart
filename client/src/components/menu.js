@@ -7,17 +7,17 @@ import { LinkContainer } from 'react-router-bootstrap';
 const Menu = ({ cartCapacity }) => (
   <Navbar>
     <Navbar.Header>
-      <Navbar.Brand>
-        <a href="/">Shopping Cart</a>
-      </Navbar.Brand>
+      <LinkContainer to="/">
+        <Navbar.Brand>Shopping Cart</Navbar.Brand>
+      </LinkContainer>
     </Navbar.Header>
     <Nav>
-      <NavItem eventKey={1} href="/">
-        About
-      </NavItem>
-      <NavItem eventKey={2} href="/">
-        Contact
-      </NavItem>
+      <LinkContainer to="/about">
+        <NavItem eventKey={1}>About</NavItem>
+      </LinkContainer>
+      <LinkContainer to="/contact">
+        <NavItem eventKey={2}>Contact</NavItem>
+      </LinkContainer>
     </Nav>
     <Nav pullRight>
       <LinkContainer to="/admin">
