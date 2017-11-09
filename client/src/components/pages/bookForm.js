@@ -68,7 +68,6 @@ class BookForm extends Component {
   };
 
   onSubmit = () => {
-
     const imageString = this.textInput.props.value;
     this.props.postBook({
       title: this.state.data.title,
@@ -79,10 +78,7 @@ class BookForm extends Component {
   };
 
   onImageSelect = img => {
-    console.log(img);
     this.setState({ img: `/images/${img}` });
-    console.log(this.textInput);
-    console.log(this.state.img);
   };
 
   deleteBook = () => {
