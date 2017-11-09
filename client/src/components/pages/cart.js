@@ -18,7 +18,9 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.props.getCart();
+    if (this.props.cart.length === 0) {
+      this.props.getCart();
+    }
   }
 
   close = () => this.setState({ showModal: false });

@@ -17,7 +17,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { postBook, deleteBook } from '../../actions/books';
+import { postBook, deleteBook, getBooks } from '../../actions/books';
 import api from '../../api';
 
 class BookForm extends Component {
@@ -37,6 +37,9 @@ class BookForm extends Component {
   }
 
   componentDidMount() {
+    if (this.props.books.length === 0) {
+      this.props.getBooks();
+    }
     api.images
       .get()
       .then(images => {
@@ -68,6 +71,7 @@ class BookForm extends Component {
     this.props.postBook({
       title: this.state.data.title,
       description: this.state.data.description,
+      images: this.state.img,
       price: this.state.data.price
     });
   };
@@ -192,7 +196,8 @@ BookForm.propTypes = {
     }).isRequired
   ).isRequired,
   postBook: PropTypes.func.isRequired,
-  deleteBook: PropTypes.func.isRequired
+  deleteBook: PropTypes.func.isRequired,
+  getBooks: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -202,7 +207,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ postBook, deleteBook }, dispatch);
+  return bindActionCreators({ postBook, deleteBook, getBooks }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForm);

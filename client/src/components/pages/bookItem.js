@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Well, Button } from 'react-bootstrap';
+import { Row, Col, Well, Button, Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -17,6 +17,7 @@ class BookItem extends Component {
       _id: this.props._id,
       title: this.props.title,
       description: this.props.description,
+      images: this.props.images,
       price: this.props.price,
       quantity: 1
     };
@@ -33,7 +34,10 @@ class BookItem extends Component {
     return (
       <Well>
         <Row>
-          <Col xs={12}>
+          <Col xs={12} sm={4}>
+            <Image src={this.props.images} responsive />
+          </Col>
+          <Col xs={6} sm={8}>
             <h6>{this.props.title}</h6>
             <p>{this.props.description}</p>
             <h6>usd. {this.props.price}</h6>
@@ -52,6 +56,9 @@ BookItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
+  ).isRequired,
   cart: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,

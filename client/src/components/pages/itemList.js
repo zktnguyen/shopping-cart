@@ -6,12 +6,13 @@ import { Col, Row, Grid } from 'react-bootstrap';
 
 import { getBooks } from '../../actions/books';
 import BookItem from './bookItem';
-import BookForm from './bookForm';
 import Cart from './cart';
 
 class itemList extends Component {
   componentDidMount() {
-    this.props.getBooks();
+    if (this.props.books.length === 0) {
+      this.props.getBooks();
+    }
   }
 
   render() {
@@ -21,6 +22,7 @@ class itemList extends Component {
           _id={book._id}
           title={book.title}
           description={book.description}
+          images={book.images}
           price={book.price}
         />
       </Col>
@@ -29,12 +31,7 @@ class itemList extends Component {
       <Grid>
         <h1> List of Items </h1>
         <Cart />
-        <Row style={{ marginTop: '25px' }}>
-          <Col xs={12} sm={6}>
-            <BookForm />
-          </Col>
-          {itemsList}
-        </Row>
+        <Row style={{ marginTop: '25px' }}>{itemsList}</Row>
       </Grid>
     );
   }
@@ -47,7 +44,10 @@ itemList.propTypes = {
       _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired
+      price: PropTypes.number.isRequired,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
+      ).isRequired
     }).isRequired
   ).isRequired
 };
