@@ -17,7 +17,7 @@ class BookItem extends Component {
       _id: this.props._id,
       title: this.props.title,
       description: this.props.description,
-      images: this.props.images,
+      image: this.props.image,
       price: this.props.price,
       quantity: 1
     };
@@ -35,7 +35,7 @@ class BookItem extends Component {
       <Well>
         <Row>
           <Col xs={12} sm={4}>
-            <Image src={this.props.images} responsive />
+            <Image src={this.props.image} responsive />
           </Col>
           <Col xs={6} sm={8}>
             <h6>{this.props.title}</h6>
@@ -56,9 +56,7 @@ BookItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  images: PropTypes.arrayOf(
-    PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
-  ).isRequired,
+  image: PropTypes.string.isRequired,
   cart: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,

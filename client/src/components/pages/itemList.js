@@ -22,7 +22,7 @@ class itemList extends Component {
           _id={book._id}
           title={book.title}
           description={book.description}
-          images={book.images}
+          image={book.image}
           price={book.price}
         />
       </Col>
@@ -45,9 +45,7 @@ itemList.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      images: PropTypes.arrayOf(
-        PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
-      ).isRequired
+      image: PropTypes.string.isRequired
     }).isRequired
   ).isRequired
 };

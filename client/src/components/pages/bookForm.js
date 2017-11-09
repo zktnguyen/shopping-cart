@@ -68,16 +68,21 @@ class BookForm extends Component {
   };
 
   onSubmit = () => {
+
+    const imageString = this.textInput.props.value;
     this.props.postBook({
       title: this.state.data.title,
       description: this.state.data.description,
-      images: this.state.img,
+      image: imageString,
       price: this.state.data.price
     });
   };
 
   onImageSelect = img => {
+    console.log(img);
     this.setState({ img: `/images/${img}` });
+    console.log(this.textInput);
+    console.log(this.state.img);
   };
 
   deleteBook = () => {
@@ -105,14 +110,19 @@ class BookForm extends Component {
       ),
       this
     );
-    // Image needs to be fixed, points to localhost:3000 (react server) instead of Localhost:3002 (express server)
     return (
       <Well>
         <Row>
           <Col xs={12} sm={6}>
             <Panel>
               <InputGroup>
-                <FormControl type="text" value={this.state.img} />
+                <FormControl
+                  type="text"
+                  ref={input => {
+                    this.textInput = input;
+                  }}
+                  value={this.state.img}
+                />
                 <DropdownButton
                   componentClass={InputGroup.Button}
                   id="input-dropdown-addon"
