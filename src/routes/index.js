@@ -1,6 +1,6 @@
 import express from 'express';
 import bookController from '../controllers/bookController';
-// import cartController from '../controllers/cartController';
+import imageController from '../controllers/imageController';
 
 const router = express.Router();
 
@@ -12,5 +12,8 @@ router.put('/books/:id', bookController.update);
 // cart routes
 // router.post('/cart', cartController.post);
 // router.get('/cart', cartController.get);
+
+// image routes
+router.get('/images', imageController.get);
 
 export default router;

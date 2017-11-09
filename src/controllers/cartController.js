@@ -14,15 +14,17 @@ cartController.post = (req, res) => {
   });
 };
 
-cartController.get = (req, res) => {
-  if (typeof req.session.cart !== 'undefined') {
-    return res.status(200).json({
-      success: true,
-      data: req.session.cart
-    });
+cartController.get = function stupid(req, res) {
+  if (
+    typeof req.session.cart === 'undefined' ||
+    typeof req.session.cart.quantity === 'undefined'
+  ) {
+    return req.session.destroy(err => res.status(500).json({ message: err }));
   }
-  return res.status(500).json({
-    success: false
+
+  return res.status(200).json({
+    success: true,
+    data: req.session.cart
   });
 };
 
