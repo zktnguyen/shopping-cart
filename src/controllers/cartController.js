@@ -5,7 +5,7 @@ cartController.post = (req, res) => {
   req.session.cart = cart;
   req.session.save(err => {
     if (err) {
-      throw err;
+      console.log(err);
     }
     res.json({
       success: true,

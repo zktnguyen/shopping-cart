@@ -218,6 +218,11 @@ class BookForm extends Component {
     );
   }
 }
+BookForm.defaultProps = {
+  msg: null,
+  style: null,
+  validation: null
+};
 
 BookForm.propTypes = {
   books: PropTypes.arrayOf(
@@ -231,10 +236,10 @@ BookForm.propTypes = {
   postBook: PropTypes.func.isRequired,
   deleteBook: PropTypes.func.isRequired,
   getBooks: PropTypes.func.isRequired,
-  msg: PropTypes.string.isRequired,
-  style: PropTypes.string.isRequired,
+  msg: PropTypes.string,
+  style: PropTypes.string,
   resetButton: PropTypes.func.isRequired,
-  validation: PropTypes.string.isRequired
+  validation: PropTypes.string
 };
 
 function mapStateToProps(state) {

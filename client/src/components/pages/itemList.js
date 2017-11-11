@@ -32,7 +32,12 @@ class itemList extends Component {
         <Row>
           <Carousel>
             <Carousel.Item>
-              <img width={900} height={500} alt="900x500" src="" />
+              <img
+                width={900}
+                height={500}
+                alt="900x500"
+                src="/carousel/unsplash1.jpg"
+              />
               <Carousel.Caption>
                 <h3>First slide label</h3>
                 <p>
@@ -41,7 +46,12 @@ class itemList extends Component {
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-              <img width={900} height={500} alt="900x500" src="" />
+              <img
+                width={900}
+                height={500}
+                alt="900x500"
+                src="/carousel/unsplash2.jpg"
+              />
               <Carousel.Caption>
                 <h3>Second slide label</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

@@ -45,12 +45,12 @@ app.get('/api/cart', cartController.get);
 app.use('/api', router);
 
 // static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // any routes will display these static files
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
-app.listen(process.env.PORT, () => console.log('Running on localhost:3002'));
+app.listen(process.env.PORT || 3002);
 export default app;
