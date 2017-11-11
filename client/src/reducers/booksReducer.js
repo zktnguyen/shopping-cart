@@ -14,7 +14,20 @@ export default function(
     case actionTypes.GET_BOOKS:
       return { ...state, books: [...action.payload] };
     case actionTypes.POST_BOOK:
-      return { books: [...state.books, action.payload] };
+      return {
+        ...state,
+        books: [...state.books, action.payload],
+        msg: 'Saved! Please click to continue',
+        style: 'success',
+        validation: 'success'
+      };
+    case actionTypes.POST_BOOK_REJECTED:
+      return {
+        ...state,
+        msg: 'Please, try again',
+        style: 'danger',
+        validation: 'error'
+      };
     case actionTypes.DELETE_BOOK:
       currentBooks = [...state.books];
       index = currentBooks.findIndex(book => book._id === action.payload._id);
@@ -39,6 +52,8 @@ export default function(
         };
       }
       return { books: currentBooks };
+    case actionTypes.RESET_BUTTON:
+      return { ...state, msg: null, style: 'primary', validation: null };
     default:
       return state;
   }

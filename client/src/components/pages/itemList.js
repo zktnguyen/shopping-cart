@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Col, Row, Grid } from 'react-bootstrap';
+import { Col, Row, Grid, Carousel } from 'react-bootstrap';
 
 import { getBooks } from '../../actions/books';
 import BookItem from './bookItem';
@@ -29,8 +29,29 @@ class itemList extends Component {
     ));
     return (
       <Grid>
-        <h1> List of Items </h1>
-        <Cart />
+        <Row>
+          <Carousel>
+            <Carousel.Item>
+              <img width={900} height={500} alt="900x500" src="" />
+              <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>
+                  Nulla vitae elit libero, a pharetra augue mollis interdum.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width={900} height={500} alt="900x500" src="" />
+              <Carousel.Caption>
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </Row>
+        <Row style={{ marginTop: '15px' }}>
+          <Cart />
+        </Row>
         <Row style={{ marginTop: '25px' }}>{itemsList}</Row>
       </Grid>
     );

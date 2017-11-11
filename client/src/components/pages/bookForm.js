@@ -17,7 +17,12 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { postBook, deleteBook, getBooks } from '../../actions/books';
+import {
+  postBook,
+  deleteBook,
+  getBooks,
+  resetButton
+} from '../../actions/books';
 import api from '../../api';
 
 class BookForm extends Component {
@@ -85,6 +90,13 @@ class BookForm extends Component {
     this.props.deleteBook(this.state.toDelete);
   };
 
+  resetForm = () => {
+    // reset the fields
+    // dispatch action to reset the submit button
+    this.props.resetButton();
+    this.setState({ data: { title: '', description: '', price: 0 }, img: '' });
+  };
+
   render() {
     const { data, toDelete } = this.state;
     const booksList = this.props.books.map(book => (
@@ -134,7 +146,10 @@ class BookForm extends Component {
           </Col>
           <Col xs={12} sm={6}>
             <Panel>
-              <FormGroup controlId="title">
+              <FormGroup
+                controlId="title"
+                validationState={this.props.validation}
+              >
                 <ControlLabel>Title</ControlLabel>
                 <FormControl
                   type="text"
@@ -143,8 +158,12 @@ class BookForm extends Component {
                   value={data.title}
                   onChange={this.onChange}
                 />
+                <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="description">
+              <FormGroup
+                controlId="description"
+                validationState={this.props.validation}
+              >
                 <ControlLabel>Description</ControlLabel>
                 <FormControl
                   type="text"
@@ -153,8 +172,12 @@ class BookForm extends Component {
                   value={data.description}
                   onChange={this.onChange}
                 />
+                <FormControl.Feedback />
               </FormGroup>
-              <FormGroup controlId="price">
+              <FormGroup
+                controlId="price"
+                validationState={this.props.validation}
+              >
                 <ControlLabel>Price</ControlLabel>
                 <FormControl
                   type="number"
@@ -163,9 +186,13 @@ class BookForm extends Component {
                   value={data.price}
                   onChange={this.onChange}
                 />
+                <FormControl.Feedback />
               </FormGroup>
-              <Button onClick={this.onSubmit} bsStyle="primary">
-                Save Book
+              <Button
+                onClick={!this.props.msg ? this.onSubmit : this.resetForm}
+                bsStyle={!this.props.style ? 'primary' : this.props.style}
+              >
+                {!this.props.msg ? 'Save book' : this.props.msg}
               </Button>
             </Panel>
             <Panel style={{ marginTop: '25px' }}>
@@ -203,17 +230,27 @@ BookForm.propTypes = {
   ).isRequired,
   postBook: PropTypes.func.isRequired,
   deleteBook: PropTypes.func.isRequired,
-  getBooks: PropTypes.func.isRequired
+  getBooks: PropTypes.func.isRequired,
+  msg: PropTypes.string.isRequired,
+  style: PropTypes.string.isRequired,
+  resetButton: PropTypes.func.isRequired,
+  validation: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    books: state.books.books
+    books: state.books.books,
+    msg: state.books.msg,
+    style: state.books.style,
+    validation: state.books.validation
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ postBook, deleteBook, getBooks }, dispatch);
+  return bindActionCreators(
+    { postBook, deleteBook, getBooks, resetButton },
+    dispatch
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForm);
