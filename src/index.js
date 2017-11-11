@@ -22,8 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONGODB_URL, { useMongoClient: true }, () =>
-  console.log('connected to mongodb...')
+mongoose.connect(
+  process.env.MONGODB_URL ||
+    'mongodb://kim:Zenten#2@ds064198.mlab.com:64198/shop',
+  { useMongoClient: true },
+  () => console.log('connected to mongodb...')
 );
 
 const db = mongoose.connection;
@@ -31,7 +34,7 @@ db.on('error', console.error.bind(console, '# MongoDB - connection error: '));
 // Set up session to connect cookie to mongoDB
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "secretkeyagain",
     saveUninitialized: false,
     resave: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 2 },
